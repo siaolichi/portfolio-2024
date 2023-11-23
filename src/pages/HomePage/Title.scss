@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@900&display=swap');
+.title {
+  /* Base font size */
+  font-size: 10px;
+
+  /* Set neon color */
+  --neon-text-color: rgb(255, 133, 233);
+  --neon-border-color: rgb(0, 255, 195);
+
+  font-family: 'Noto Sans TC', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  z-index: 10;
+
+  position: fixed;
+  left: 50px;
+  top: 0;
+
+  touch-action: none;
+
+  @media screen and (max-height: 900px) {
+      left: 0;
+    }
+
+  @media screen and (max-width: 900px) and (min-height: 900px) {
+    flex-direction: row;
+    height: auto;
+    top: 10px;
+    left: 0;
+    width: 100%;
+  }
+
+    h1 {
+      z-index: 10;
+      background: black;
+      font-size: 5rem;
+      font-weight: 900;
+      font-style: italic;
+      color: #fff;
+      padding: 2rem 3rem 2rem;
+      border: 0.4rem solid #fff;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      animation: flicker 1.5s infinite alternate;
+      margin-top: 30px;
+      @media screen and (max-height: 900px) {
+        font-size: 2.5rem;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin: 5px 10px;
+      }
+  
+      @media screen and (max-width: 900px) and (min-height: 900px) {
+        font-size: 3rem;
+        padding: 10px 20px;
+        margin-top: 0;
+        margin: 0 10px;
+        border-radius: 20px;
+      }
+    }
+}
+
+/* Animate neon flicker */
+@keyframes flicker {
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+
+    text-shadow:
+      -0.05rem -0.1rem 1rem #ffffff56,
+      0.05rem 0.1rem 1rem #ffffff56,
+      0 0 1rem var(--neon-text-color),
+      0 0 2rem var(--neon-text-color),
+      0 0 3rem var(--neon-text-color),
+      0 0 4rem var(--neon-text-color),
+      0 0 5rem var(--neon-text-color);
+
+    box-shadow:
+      0 0 .25rem #fff,
+      inset 0 0 .25rem #fff,
+      0 0 1rem var(--neon-border-color),
+      inset 0 0 1rem var(--neon-border-color),
+      0 0 1rem var(--neon-border-color),
+      inset 0 0 1rem var(--neon-border-color);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
+}

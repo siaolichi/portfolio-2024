@@ -1,4 +1,4 @@
-import { useSpring, useSpringRef } from "@react-spring/three";
+import { useSpring } from "@react-spring/three";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -8,12 +8,11 @@ function CameraControl() {
   const currentPage = useSelector((state) => state.pages.currentPage);
 
   const three = useThree();
-  const [{ position }, springApi] = useSpring(() => ({
+  const [_, springApi] = useSpring(() => ({
     from: {
       position: [0, 0, 0],
     },
     onChange: ({ value }) => {
-      console.log(value);
       const position = value.position;
       three.camera.position.x = position[0];
       three.camera.position.y = position[1];

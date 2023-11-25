@@ -1,7 +1,7 @@
 import { SpotLight, PresentationControls, useGLTF } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { a, useSpringRef, useSprings } from "@react-spring/three";
+import { a, useSpring, useSpringRef, useSprings } from "@react-spring/three";
 import { useThree } from "@react-three/fiber";
 
 import { setPage } from "../../features/pages";
@@ -55,6 +55,20 @@ function Street() {
   buildingsRef[3] = useSpringRef();
   buildingsRef[4] = useSpringRef();
 
+  const [lightSpring, lightApi] = useSpring(() => ({
+    from: {
+      intensity: 1,
+    },
+  }));
+
+  useEffect(() => {
+    if (currentPage !== "home") {
+      lightApi.start({ to: { intensity: 0 } });
+    } else {
+      lightApi.start({ to: { intensity: 1 } });
+    }
+  }, [currentPage]);
+
   useEffect(() => {
     if (size.width > size.height || size.width > 900) {
       setGroupSize(1);
@@ -83,12 +97,14 @@ function Street() {
   };
 
   const onClickAbout = (e) => {
+    if (currentPage !== "home") return;
     e.stopPropagation();
     dispatch(setPage("about"));
     jump(buildingsRef[0]);
   };
 
   const onClickWorks = (e) => {
+    if (currentPage !== "home") return;
     e.stopPropagation();
     dispatch(setPage("works"));
     jump(buildingsRef[4]);
@@ -128,10 +144,26 @@ function Street() {
       >
         <group position={[0, 0, 0]} rotation-y={(-Math.PI * 2) / 3} scale={groupSize}>
           <primitive object={street.scene} />
-          <ambientLight tension={5} />
-          <directionalLight />
-          <SpotLight color='pink' position={[-2, 3, 5]} distance={500} angle={Math.PI * 2} radiusBottom={150} />
-          <SpotLight color='pink' position={[-2, 3, -5]} distance={500} angle={Math.PI * 2} radiusBottom={150} />
+          <a.ambientLight intensity={lightSpring.intensity} />
+          {/* <directionalLight /> */}
+          <SpotLight
+            color='white'
+            intensity={0.2}
+            position={[-2, 3, 5]}
+            distance={500}
+            radiusBottom={200}
+            decay={0}
+            penumbra={0}
+          />
+          <SpotLight
+            color='white'
+            intensity={0.2}
+            position={[-2, 3, -5]}
+            distance={500}
+            radiusBottom={200}
+            decay={0}
+            penumbra={0}
+          />
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 0)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 0)}

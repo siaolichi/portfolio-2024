@@ -16,13 +16,13 @@ function Home() {
 
   return (
     <div className='Home'>
-      <Title />
-      <RollingText />
+      {currentPage === "home" && <Title />}
+      {currentPage === "home" && <RollingText />}
       <BackgroundElements />
       <Canvas className='canvas' camera={{ fov: 45, position: [-1, 5, 8] }}>
         <CameraControl />
-        {currentPage === "about" ? <AboutSection /> : ""}
-        {currentPage === "works" ? <WorksSection /> : ""}
+        {currentPage === "about" && <AboutSection />}
+        {currentPage === "works" && <WorksSection />}
         <Street />
         {/* <HomeEffects /> */}
       </Canvas>

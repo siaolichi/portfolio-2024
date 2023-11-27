@@ -27,10 +27,10 @@ function CameraControl() {
       default:
       case "home":
       case "about":
-        springApi.start({ position: [-1, 5, 8] });
+        springApi.start({ position: [0, 5, 8] });
         break;
       case "works":
-        springApi.start({ position: [-1, 0, 8] });
+        springApi.start({ position: [0, 0, 8] });
         break;
     }
   }, [currentPage]);

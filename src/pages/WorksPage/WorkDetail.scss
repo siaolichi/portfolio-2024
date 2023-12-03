@@ -1,26 +1,19 @@
 .work-content {
   background-color: rgba($color: #000000, $alpha: 0.8);
-  width: 100%;
-  height: 100%;
   pointer-events: all;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
   color: white;
-
-  .back-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    z-index: 20;
-    padding: 50px;
-  }
 
   .title {
     font-size: 4rem;
+    @media screen and (max-width: 900px){
+      font-size: 3rem;
+      margin-top: 80px;
+    }
   }
+
   .video-container {
     width: 80%;
     padding: 48% 0 40px;
@@ -32,10 +25,17 @@
       width: 100%;
       height: 100%;
     }
+    @media screen and (max-width: 900px) {
+      width: 90%;
+    }
   }
   .description {
     width: 60%;
     text-align: start;
     margin-bottom: 100px;
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+      width: 90%;
+    }
   }
 }

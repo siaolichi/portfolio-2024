@@ -8,3 +8,184 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+
+@keyframes about-section-glowing {
+  0% {
+    box-shadow: 0 0 2px 1px #11dbab;
+    opacity: 1;
+  }
+
+  13% {
+    box-shadow: 0 0 8px 1px #11dbab;
+    opacity: 0.9;
+  }
+
+  20% {
+    box-shadow: 0 0 2px 1px #11dbab;
+    opacity: 1;
+  }
+
+  27% {
+    box-shadow: 0 0 8px 1px #11dbab;
+    opacity: 0.9;
+  }
+
+  34% {
+    box-shadow: 0 0 5px 1px #11dbab;
+    opacity: 1;
+  }
+
+  40% {
+    box-shadow: 0 0 8px 1px #11dbab;
+    opacity: 0.9;
+  }
+
+  48% {
+    box-shadow: 0 0 3px 1px #11dbab;
+    opacity: 1;
+  }
+
+  55% {
+    box-shadow: 0 0 9px 1px #11dbab;
+    opacity: 0.9;
+  }
+
+  62% {
+    box-shadow: 0 0 5px 0 #11dbab;
+    opacity: 1;
+  }
+
+  100% {
+    box-shadow: 0 0 8px 0 #11dbab;
+  }
+}
+
+@keyframes about-section-flicker {
+  0% {
+    opacity: 1;
+  }
+
+  13% {
+    opacity: 0.3;
+  }
+
+  23% {
+    opacity: 0.8;
+  }
+
+  30% {
+    opacity: 0.3;
+  }
+
+  38% {
+    opacity: 0.9;
+  }
+
+  45% {
+    opacity: 0.7;
+  }
+
+  53% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes about-section-flicker-lite {
+  0% {
+    opacity: 1;
+  }
+
+  13% {
+    opacity: 0.9;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  38% {
+    opacity: 0.9;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  53% {
+    opacity: 0.9;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  67% {
+    opacity: 0.9;
+  }
+
+  73% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 0.9;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0.9;
+  }
+
+  97% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes title-flicker {
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+
+    text-shadow:
+      -0.05rem -0.1rem 1rem #ffffff56,
+      0.05rem 0.1rem 1rem #ffffff56,
+      0 0 1rem var(--neon-text-color),
+      0 0 2rem var(--neon-text-color),
+      0 0 3rem var(--neon-text-color),
+      0 0 4rem var(--neon-text-color),
+      0 0 5rem var(--neon-text-color);
+
+    box-shadow:
+      0 0 .25rem #fff,
+      inset 0 0 .25rem #fff,
+      0 0 1rem var(--neon-border-color),
+      inset 0 0 1rem var(--neon-border-color),
+      0 0 1rem var(--neon-border-color),
+      inset 0 0 1rem var(--neon-border-color);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
+}

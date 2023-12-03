@@ -15,22 +15,6 @@ useGLTF.preload("./assets/building3.glb");
 useGLTF.preload("./assets/building4.glb");
 useGLTF.preload("./assets/building5.glb");
 
-const jump = (item) => {
-  item.start({
-    to: [
-      {
-        scale: [1, 0.5, 1],
-        position: [0, 2, 0],
-      },
-      {
-        scale: [1, 1, 1],
-        position: [0, 0, 0],
-      },
-    ],
-    config: { mass: 0.1, tension: 180, friction: 10 },
-  });
-};
-
 function Street() {
   const [groupSize, setGroupSize] = useState(false);
   const { size } = useThree();
@@ -91,23 +75,10 @@ function Street() {
     }))
   );
 
-  const clickEvent = (e, num) => {
-    e.stopPropagation();
-    jump(buildingsRef[num]);
-  };
-
-  const onClickAbout = (e) => {
+  const onClickPage = (e, page) => {
     if (currentPage !== "home") return;
     e.stopPropagation();
-    dispatch(setPage("about"));
-    jump(buildingsRef[0]);
-  };
-
-  const onClickWorks = (e) => {
-    if (currentPage !== "home") return;
-    e.stopPropagation();
-    dispatch(setPage("works"));
-    jump(buildingsRef[4]);
+    dispatch(setPage(page));
   };
 
   const pointerOverEvent = (e, num) => {
@@ -145,7 +116,6 @@ function Street() {
         <group position={[0, 0, 0]} rotation-y={(-Math.PI * 2) / 3} scale={groupSize}>
           <primitive object={street.scene} />
           <a.ambientLight intensity={lightSpring.intensity} />
-          {/* <directionalLight /> */}
           <SpotLight
             color='white'
             intensity={0.2}
@@ -167,42 +137,47 @@ function Street() {
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 0)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 0)}
-            onClick={onClickAbout}
+            onClick={(e) => onClickPage(e, "about")}
             object={buildings[0].scene}
             scale={springs[0].scale}
             position={springs[0].position}
+            name='building1'
           />
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 1)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 1)}
-            onClick={(e) => clickEvent(e, 1)}
+            onClick={(e) => onClickPage(e, "audiovisual")}
             object={buildings[1].scene}
             scale={springs[1].scale}
             position={springs[1].position}
+            name='building2'
           />
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 2)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 2)}
-            onClick={(e) => clickEvent(e, 2)}
+            onClick={(e) => onClickPage(e, "contact")}
             object={buildings[2].scene}
             scale={springs[2].scale}
             position={springs[2].position}
+            name='building3'
           />
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 3)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 3)}
-            onClick={(e) => clickEvent(e, 3)}
+            onClick={(e) => onClickPage(e, "websites")}
             scale={springs[3].scale}
             position={springs[3].position}
             object={buildings[3].scene}
+            name='building4'
           />
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 4)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 4)}
-            onClick={onClickWorks}
+            onClick={(e) => onClickPage(e, "works")}
             object={buildings[4].scene}
             scale={springs[4].scale}
             position={springs[4].position}
+            name='building5'
           />
         </group>
       </PresentationControls>

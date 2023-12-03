@@ -1,4 +1,8 @@
+// import AwesomeSlider from "react-awesome-slider";
 import "./WorkDetail.scss";
+// import { Fragment } from "react";
+
+// import "react-awesome-slider/dist/styles.css";
 
 function WorkDetail({ work }) {
   return (
@@ -22,7 +26,7 @@ function WorkDetail({ work }) {
           {work.photos.map((photo, index) => (
             <Fragment key={index}>
               <img
-                src={require(`../assets/images/${work.id}/${photo}`)}
+                src={`/assets/images/${work.id}/${photo}`}
                 alt={work.title}
                 style={{ objectFit: "contain", width: "100%", height: "100%" }}
               />

@@ -1,20 +1,24 @@
 import "./WorksSection.scss";
-import WorkCard from "./WorkCard";
+
 import { useDispatch } from "react-redux";
 import { setPage } from "../../features/pages";
-import content from "../../content/works";
-
-import BackIcon from "../../assets/icons/back.svg";
-import LastIcon from "../../assets/icons/last-arrow.svg";
-import NextIcon from "../../assets/icons/next-arrow.svg";
-import { Html } from "@react-three/drei";
-import { ReactSVG } from "react-svg";
+import { Html, Image } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/three";
 import { useEffect, useState } from "react";
+import { useThree } from "@react-three/fiber";
+
+import content from "../../content/works";
+
+import WorkCard from "./WorkCard";
+import WorkDetail from "./WorkDetail";
 
 function WorksSection() {
   const dispatch = useDispatch();
+  const { size } = useThree();
+  const [groupSize, setGroupSize] = useState(false);
+
   let [currentIndex, setCurrentIndex] = useState(0);
+  const [showDetail, setShowDetail] = useState(undefined);
   const [spring, api] = useSpring(() => ({
     from: {
       rotation: [0, 0, 0],
@@ -23,6 +27,7 @@ function WorksSection() {
 
   const closeWorksPage = (e) => {
     e.stopPropagation();
+    if (showDetail) return;
     dispatch(setPage("home"));
   };
 
@@ -33,6 +38,13 @@ function WorksSection() {
     setCurrentIndex(currentIndex + 1);
   };
 
+  const onOpenDetail = (content) => {
+    setShowDetail(content);
+  };
+  const onCloseDetail = () => {
+    setShowDetail(undefined);
+  };
+
   useEffect(() => {
     api.start({
       to: {
@@ -41,27 +53,57 @@ function WorksSection() {
     });
   }, [currentIndex]);
 
+  useEffect(() => {
+    if (size.width > size.height || size.width > 900) {
+      setGroupSize(1);
+    } else if (size.width > 600) {
+      setGroupSize(1);
+    } else {
+      setGroupSize(0.8);
+    }
+  }, [size]);
+
   return (
     <>
-      <a.group rotation={spring.rotation}>
-        {content.map((item, index) => (
-          <WorkCard
-            key={item.id}
-            content={item}
-            position={[
-              Math.sin(((Math.PI * 2) / content.length) * index) * 4,
-              0,
-              Math.cos(((Math.PI * 2) / content.length) * index) * 4,
-            ]}
-            rotation={((Math.PI * 2) / content.length) * index}
-          />
-        ))}
-      </a.group>
-      <Html fullscreen className='works-section'>
-        <ReactSVG className='back-icon' src={BackIcon} onClick={closeWorksPage} />
-        <ReactSVG className='next-icon' src={NextIcon} onClick={onNextWork} />
-        <ReactSVG className='last-icon' src={LastIcon} onClick={onLastWork} />
-      </Html>
+      <group onPointerMissed={closeWorksPage}>
+        <a.group rotation={spring.rotation}>
+          {content.map((item, index) => (
+            <WorkCard
+              key={item.id}
+              content={item}
+              position={[
+                Math.sin(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
+                0,
+                Math.cos(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
+              ]}
+              scale={groupSize}
+              rotation={((Math.PI * 2) / content.length) * index}
+              onOpenDetail={() => onOpenDetail(item)}
+            />
+          ))}
+        </a.group>
+        <Image
+          url={`assets/icons/next-arrow.svg`}
+          onClick={onNextWork}
+          position={[1 * groupSize, 0, 4 * groupSize]}
+          scale={0.4 * groupSize}
+          transparent
+        />
+        <Image
+          url={`assets/icons/last-arrow.svg`}
+          onClick={onLastWork}
+          position={[-1 * groupSize, 0, 4 * groupSize]}
+          scale={0.4 * groupSize}
+          transparent
+        />
+        {showDetail && (
+          <Html fullscreen className='works-section'>
+            <div className='works-section__detail-wrapper' onClick={onCloseDetail}>
+              <WorkDetail work={showDetail} />
+            </div>
+          </Html>
+        )}
+      </group>
     </>
   );
 }

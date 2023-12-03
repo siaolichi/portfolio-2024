@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.contact-section {
+  color: white;
+  font-size: 1.6em;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+
+  p {
+    font-size: 24px;
+    line-height: 150%;
+
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 50%;
+    margin-left: 100px;
+
+    @media screen and (max-width: 900px) {
+      margin-left: 0;
+      width: 90%;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__flicker-lite {
+    animation-name: about-section-flicker-lite;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  &__glowbox {
+    background-color: rgba(145, 17, 219, 0.21);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+    box-shadow: 0 0 5px #db11c0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #db11c0;
+    border-radius: 10px;
+  }
+}
+

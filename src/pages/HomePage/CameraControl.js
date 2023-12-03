@@ -26,11 +26,27 @@ function CameraControl() {
     switch (currentPage) {
       default:
       case "home":
-      case "about":
         springApi.start({ position: [0, 5, 8] });
+        break;
+      case "about":
+        if (three.size.width > 900) {
+          springApi.start({ position: [-2, 1.2, 2] });
+        } else {
+          springApi.start({ position: [-1.9, 0, 1.5] });
+        }
+        break;
+      case "contact":
+        if (three.size.width > 900) {
+          springApi.start({ position: [3, -1, 3] });
+        } else {
+          springApi.start({ position: [2, 0, 1.8] });
+        }
         break;
       case "works":
         springApi.start({ position: [0, 0, 8] });
+        break;
+      case "websites":
+        springApi.start({ position: [0, 8, 0] });
         break;
     }
   }, [currentPage]);

@@ -114,7 +114,7 @@ function Street() {
         azimuth={[-Math.PI / 4, Math.PI / 4]}
       >
         <group position={[0, 0, 0]} rotation-y={(-Math.PI * 2) / 3} scale={groupSize}>
-          <primitive object={street.scene} />
+          {currentPage !== "audio" && <primitive object={street.scene} />}
           <a.ambientLight intensity={lightSpring.intensity} />
           <SpotLight
             color='white'
@@ -146,7 +146,7 @@ function Street() {
           <a.primitive
             onPointerOver={(e) => pointerOverEvent(e, 1)}
             onPointerLeave={(e) => pointerLeaveEvent(e, 1)}
-            onClick={(e) => onClickPage(e, "audiovisual")}
+            onClick={(e) => onClickPage(e, "audio")}
             object={buildings[1].scene}
             scale={springs[1].scale}
             position={springs[1].position}

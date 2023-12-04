@@ -45,6 +45,9 @@ function CameraControl() {
       case "works":
         springApi.start({ position: [0, 0, 8] });
         break;
+      case "audio":
+        springApi.start({ position: [0, 0, 8] });
+        break;
       case "websites":
         springApi.start({ position: [0, 8, 0] });
         break;

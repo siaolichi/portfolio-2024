@@ -28,7 +28,7 @@ function Home() {
         {currentPage === "contact" && <ContactSection />}
         {currentPage === "works" && <WorksSection />}
         {currentPage === "websites" && <WebList />}
-        {currentPage === "audiovisual" && <AudioPage />}
+        {currentPage === "audio" && <AudioPage />}
         <Street />
         {/* <HomeEffects /> */}
       </Canvas>

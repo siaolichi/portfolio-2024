@@ -2,7 +2,7 @@ import "./WorksSection.scss";
 
 import { useDispatch } from "react-redux";
 import { setPage } from "../../features/pages";
-import { Html, Image } from "@react-three/drei";
+import { Html, Image, PresentationControls } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/three";
 import { useEffect, useState } from "react";
 import { useThree } from "@react-three/fiber";
@@ -17,13 +17,13 @@ function WorksSection() {
   const { size } = useThree();
   const [groupSize, setGroupSize] = useState(false);
 
-  let [currentIndex, setCurrentIndex] = useState(0);
+  // let [currentIndex, setCurrentIndex] = useState(0);
   const [showDetail, setShowDetail] = useState(undefined);
-  const [spring, api] = useSpring(() => ({
-    from: {
-      rotation: [0, 0, 0],
-    },
-  }));
+  // const [spring, api] = useSpring(() => ({
+  //   from: {
+  //     rotation: [0, 0, 0],
+  //   },
+  // }));
 
   const closeWorksPage = (e) => {
     e.stopPropagation();
@@ -31,12 +31,12 @@ function WorksSection() {
     dispatch(setPage("home"));
   };
 
-  const onNextWork = () => {
-    setCurrentIndex(currentIndex - 1);
-  };
-  const onLastWork = () => {
-    setCurrentIndex(currentIndex + 1);
-  };
+  // const onNextWork = () => {
+  //   setCurrentIndex(currentIndex - 1);
+  // };
+  // const onLastWork = () => {
+  //   setCurrentIndex(currentIndex + 1);
+  // };
 
   const onOpenDetail = (content) => {
     setShowDetail(content);
@@ -45,13 +45,13 @@ function WorksSection() {
     setShowDetail(undefined);
   };
 
-  useEffect(() => {
-    api.start({
-      to: {
-        rotation: [0, (currentIndex / content.length) * Math.PI * 2, 0],
-      },
-    });
-  }, [currentIndex]);
+  // useEffect(() => {
+  //   api.start({
+  //     to: {
+  //       rotation: [0, (currentIndex / content.length) * Math.PI * 2, 0],
+  //     },
+  //   });
+  // }, [currentIndex]);
 
   useEffect(() => {
     if (size.width > size.height || size.width > 900) {
@@ -66,23 +66,25 @@ function WorksSection() {
   return (
     <>
       <group onPointerMissed={closeWorksPage}>
-        <a.group rotation={spring.rotation}>
-          {content.map((item, index) => (
-            <WorkCard
-              key={item.id}
-              content={item}
-              position={[
-                Math.sin(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
-                0,
-                Math.cos(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
-              ]}
-              scale={groupSize}
-              rotation={((Math.PI * 2) / content.length) * index}
-              onOpenDetail={() => onOpenDetail(item)}
-            />
-          ))}
-        </a.group>
-        <Image
+        <PresentationControls global polar={[0, 0, 0]}>
+          <group rotation={[0, 0, 0]}>
+            {content.map((item, index) => (
+              <WorkCard
+                key={item.id}
+                content={item}
+                position={[
+                  Math.sin(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
+                  0,
+                  Math.cos(((Math.PI * 2) / content.length) * index) * 4 * groupSize,
+                ]}
+                scale={groupSize}
+                rotation={((Math.PI * 2) / content.length) * index}
+                onOpenDetail={() => onOpenDetail(item)}
+              />
+            ))}
+          </group>
+        </PresentationControls>
+        {/* <Image
           url={`assets/icons/next-arrow.svg`}
           onClick={onNextWork}
           position={[1 * groupSize, 0, 4 * groupSize]}
@@ -94,8 +96,8 @@ function WorksSection() {
           onClick={onLastWork}
           position={[-1 * groupSize, 0, 4 * groupSize]}
           scale={0.4 * groupSize}
-          transparent
-        />
+          transparent 
+        />*/}
         {showDetail && (
           <Html fullscreen className='works-section'>
             <div className='works-section__detail-wrapper' onClick={onCloseDetail}>

@@ -30,7 +30,7 @@ function Home() {
         {currentPage === "websites" && <WebList />}
         {currentPage === "audio" && <AudioPage />}
         <Street />
-        {/* <HomeEffects /> */}
+        {/* {currentPage === "home" && <HomeEffects />} */}
       </Canvas>
     </div>
   );

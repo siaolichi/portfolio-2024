@@ -4,7 +4,7 @@ import { setPage } from "../../features/pages";
 import { useFrame } from "@react-three/fiber";
 import sound from "../../assets/audios/Im-still-alive.wav";
 import { Html } from "@react-three/drei";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import playButton from "../../assets/icons/play-button.png";
 import pauseButton from "../../assets/icons/pause-button.png";
 import forwardButton from "../../assets/icons/forward-button.png";
@@ -19,6 +19,8 @@ function AVPage() {
   const dataArray = new Uint8Array(bufferLength);
 
   let audioSource = useRef();
+
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const audioRef = useCallback((node) => {
     if (!node || audioSource.current) return;
@@ -50,10 +52,12 @@ function AVPage() {
   const onPlay = (e) => {
     e.stopPropagation();
     audioSource.current.mediaElement.play();
+    setIsPlaying(true);
   };
   const onPause = (e) => {
     e.stopPropagation();
     audioSource.current.mediaElement.pause();
+    setIsPlaying(false);
   };
   const onNext = (e) => {
     e.stopPropagation();
@@ -71,8 +75,11 @@ function AVPage() {
             <div className='audio-page__current-source'>I'm Still Alive</div>
             <div className='audio-page__controller'>
               <img className='audio-page__icon' alt='rewind button' onClick={onLast} src={rewindButton} />
-              <img className='audio-page__icon' alt='play button' onClick={onPlay} src={playButton} />
-              <img className='audio-page__icon' alt='pause button' onClick={onPause} src={pauseButton} />
+              {!isPlaying ? (
+                <img className='audio-page__icon' alt='play button' onClick={onPlay} src={playButton} />
+              ) : (
+                <img className='audio-page__icon' alt='pause button' onClick={onPause} src={pauseButton} />
+              )}
               <img className='audio-page__icon' alt='forward button' onClick={onNext} src={forwardButton} />
             </div>
           </div>

@@ -1,10 +1,9 @@
 import "./WorksSection.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../../features/pages";
-import { Html, Image, PresentationControls } from "@react-three/drei";
-import { a, useSpring } from "@react-spring/three";
-import { useEffect, useState } from "react";
+import { Html, PresentationControls } from "@react-three/drei";
+import { useEffect, useState, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 
 import content from "../../content/works";
@@ -14,16 +13,18 @@ import WorkDetail from "./WorkDetail";
 
 function WorksSection() {
   const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.pages.currentPage);
+  const groupRef = useRef();
+
+  useEffect(() => {
+    if (currentPage === "works") groupRef.current.visible = true;
+    else groupRef.current.visible = false;
+  }, [currentPage, groupRef]);
+
   const { size } = useThree();
   const [groupSize, setGroupSize] = useState(false);
 
-  // let [currentIndex, setCurrentIndex] = useState(0);
   const [showDetail, setShowDetail] = useState(undefined);
-  // const [spring, api] = useSpring(() => ({
-  //   from: {
-  //     rotation: [0, 0, 0],
-  //   },
-  // }));
 
   const closeWorksPage = (e) => {
     e.stopPropagation();
@@ -31,27 +32,12 @@ function WorksSection() {
     dispatch(setPage("home"));
   };
 
-  // const onNextWork = () => {
-  //   setCurrentIndex(currentIndex - 1);
-  // };
-  // const onLastWork = () => {
-  //   setCurrentIndex(currentIndex + 1);
-  // };
-
   const onOpenDetail = (content) => {
     setShowDetail(content);
   };
   const onCloseDetail = () => {
     setShowDetail(undefined);
   };
-
-  // useEffect(() => {
-  //   api.start({
-  //     to: {
-  //       rotation: [0, (currentIndex / content.length) * Math.PI * 2, 0],
-  //     },
-  //   });
-  // }, [currentIndex]);
 
   useEffect(() => {
     if (size.width > size.height || size.width > 900) {
@@ -65,7 +51,7 @@ function WorksSection() {
 
   return (
     <>
-      <group onPointerMissed={closeWorksPage}>
+      <group ref={groupRef} onPointerMissed={closeWorksPage}>
         <PresentationControls global polar={[0, 0, 0]}>
           <group rotation={[0, 0, 0]}>
             {content.map((item, index) => (
@@ -84,20 +70,6 @@ function WorksSection() {
             ))}
           </group>
         </PresentationControls>
-        {/* <Image
-          url={`assets/icons/next-arrow.svg`}
-          onClick={onNextWork}
-          position={[1 * groupSize, 0, 4 * groupSize]}
-          scale={0.4 * groupSize}
-          transparent
-        />
-        <Image
-          url={`assets/icons/last-arrow.svg`}
-          onClick={onLastWork}
-          position={[-1 * groupSize, 0, 4 * groupSize]}
-          scale={0.4 * groupSize}
-          transparent 
-        />*/}
         {showDetail && (
           <Html fullscreen className='works-section'>
             <div className='works-section__detail-wrapper' onClick={onCloseDetail}>

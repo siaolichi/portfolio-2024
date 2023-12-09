@@ -26,8 +26,8 @@ function Home() {
         <CameraControl />
         {currentPage === "about" && <AboutSection />}
         {currentPage === "contact" && <ContactSection />}
-        {currentPage === "works" && <WorksSection />}
-        {currentPage === "websites" && <WebList />}
+        <WorksSection />
+        <WebList />
         {currentPage === "audio" && <AudioPage />}
         <Street />
         {/* {currentPage === "home" && <HomeEffects />} */}

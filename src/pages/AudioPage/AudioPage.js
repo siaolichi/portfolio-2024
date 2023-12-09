@@ -4,7 +4,7 @@ import { setPage } from "../../features/pages";
 import { useFrame } from "@react-three/fiber";
 import sound from "../../assets/audios/Im-still-alive.wav";
 import { Html } from "@react-three/drei";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import playButton from "../../assets/icons/play-button.png";
 import pauseButton from "../../assets/icons/pause-button.png";
 import forwardButton from "../../assets/icons/forward-button.png";
@@ -12,26 +12,27 @@ import rewindButton from "../../assets/icons/rewind-button.png";
 
 function AVPage() {
   const dispatch = useDispatch();
-  const audioCtx = new AudioContext();
-  const analyser = audioCtx.createAnalyser();
-  analyser.fftSize = 32;
-  const bufferLength = analyser.frequencyBinCount;
+
+  const audioRef = useRef();
+  const audioCtx = useRef(new AudioContext());
+  const analyser = useRef(audioCtx.current.createAnalyser());
+
+  analyser.current.fftSize = 32;
+  const bufferLength = analyser.current.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
 
-  let audioSource = useRef();
-
   const [isPlaying, setIsPlaying] = useState(true);
+  let audioSource = useRef(null);
 
-  const audioRef = useCallback((node) => {
-    if (!node || audioSource.current) return;
-    audioSource.current = audioCtx.createMediaElementSource(node);
-    audioSource.current.connect(analyser);
-
-    analyser.connect(audioCtx.destination);
-  }, []);
+  const handleAnalyser = () => {
+    if (audioSource.current) return;
+    audioSource.current = audioCtx.current.createMediaElementSource(audioRef.current);
+    audioSource.current.connect(analyser.current);
+    analyser.current.connect(audioCtx.current.destination);
+  };
 
   useFrame((three) => {
-    analyser.getByteFrequencyData(dataArray);
+    analyser.current.getByteFrequencyData(dataArray);
     const building1 = three.scene.getObjectByName("building1");
     const building2 = three.scene.getObjectByName("building2");
     const building3 = three.scene.getObjectByName("building3");
@@ -45,18 +46,18 @@ function AVPage() {
   });
 
   const onClosePage = (e) => {
-    if (audioCtx && audioCtx.state !== "closed") audioCtx.close();
+    if (audioCtx.current && audioCtx.current.state !== "closed") audioCtx.current.close();
+    audioRef.current.pause();
     dispatch(setPage("home"));
   };
 
   const onPlay = (e) => {
-    e.stopPropagation();
-    audioSource.current.mediaElement.play();
+    audioRef.current.play();
     setIsPlaying(true);
   };
   const onPause = (e) => {
-    e.stopPropagation();
-    audioSource.current.mediaElement.pause();
+    audioRef.current.pause();
+    console.log(audioRef.current.paused);
     setIsPlaying(false);
   };
   const onNext = (e) => {
@@ -70,7 +71,7 @@ function AVPage() {
     <>
       <Html fullscreen>
         <div className='audio-page' onClick={onClosePage}>
-          <audio ref={audioRef} src={sound} autoPlay></audio>
+          <audio ref={audioRef} src={sound} autoPlay onPlay={handleAnalyser}></audio>
           <div className='audio-page__wrapper' onClick={(e) => e.stopPropagation()}>
             <div className='audio-page__current-source'>I'm Still Alive</div>
             <div className='audio-page__controller'>

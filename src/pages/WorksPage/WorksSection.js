@@ -33,6 +33,7 @@ function WorksSection() {
   };
 
   const onOpenDetail = (content) => {
+    if (currentPage !== "works") return;
     setShowDetail(content);
   };
   const onCloseDetail = () => {

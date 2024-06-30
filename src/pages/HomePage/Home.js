@@ -1,7 +1,7 @@
+import "./Home.css";
+
 import LoadingOverlay from "react-loading-overlay";
 import { RingLoader } from "react-spinners";
-
-import "./Home.css";
 import { Canvas } from "@react-three/fiber";
 import { useSelector } from "react-redux";
 import { useProgress } from "@react-three/drei";

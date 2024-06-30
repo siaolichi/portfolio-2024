@@ -5,4 +5,8 @@
   .canvas {
     touch-action: none;
   }
+  .loading-overlay{
+    width: 100%;
+    height: 100%;
+  }
 }

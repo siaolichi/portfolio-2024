@@ -79,7 +79,7 @@ export default [
   {
     id: "201803",
     year: "2018",
-    title: "Women in Another Words",
+    title: "In Another Words",
     description:
       'Collaborate with Taiwan consmetic brand "VesCir". <br>A word to describe your best condition. <br>I put this conception in our audio-visual project. People can test their skin condition and create threir own video in the exibition, after taht, they can download throw app or recieve by E-mail',
     photos: [

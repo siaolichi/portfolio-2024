@@ -75,13 +75,13 @@ function AVPage() {
           <div className='audio-page__wrapper' onClick={(e) => e.stopPropagation()}>
             <div className='audio-page__current-source'>I'm Still Alive</div>
             <div className='audio-page__controller'>
-              <img className='audio-page__icon' alt='rewind button' onClick={onLast} src={rewindButton} />
+              {/* <img className='audio-page__icon' alt='rewind button' onClick={onLast} src={rewindButton} /> */}
               {!isPlaying ? (
                 <img className='audio-page__icon' alt='play button' onClick={onPlay} src={playButton} />
               ) : (
                 <img className='audio-page__icon' alt='pause button' onClick={onPause} src={pauseButton} />
               )}
-              <img className='audio-page__icon' alt='forward button' onClick={onNext} src={forwardButton} />
+              {/* <img className='audio-page__icon' alt='forward button' onClick={onNext} src={forwardButton} /> */}
             </div>
           </div>
         </div>

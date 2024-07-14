@@ -1,0 +1,36 @@
+.Home {
+  width: 100%;
+  height: 100%;
+  background-color:rgb(249, 237, 224);
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    h1,h2 {
+      text-align: left;
+      padding-left: 10px;
+    }
+  }
+  .canvas-wrapper {
+    touch-action: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  footer {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-end;
+
+    img {
+      margin: 10px;
+    }
+  }
+}

@@ -57,7 +57,13 @@ function ContactSection() {
           <a.div style={{ overflow: "hidden", ...spring[1] }}>
             <div className='contact-section__box contact-section__flicker-lite contact-section__glowbox'>
               <div className='contact-section__form'>
-                <a.p style={{ ...spring[2] }}>Instagram / Facebook / Youtube</a.p>
+                <a.p style={{ ...spring[2] }}>
+                  <a href='https://www.instagram.com/hsiao.li.chi/'>Instagram: hsiao.li.chi</a> <br />
+                  <div>
+                    E-mail:
+                    &#115;&#105;&#097;&#111;&#046;&#108;&#105;&#099;&#104;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;
+                  </div>
+                </a.p>
               </div>
             </div>
           </a.div>

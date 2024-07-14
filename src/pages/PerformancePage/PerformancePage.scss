@@ -1,0 +1,89 @@
+.performance-page {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  h1 {
+    align-self: flex-start;
+    text-align: left;
+    font-size: 48px;
+  }
+
+  footer {
+    margin: 200px 0 50px 0;
+    text-align: center;
+    font-weight: 800;
+    a {
+      color: black;
+    }
+  }
+
+  *{
+    transition: .3s all ease-in-out;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    .performance-page__top {
+      font-weight: 600;
+      padding: 10px;
+      margin: 1px;
+      border: solid 1px black;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+
+      &:hover {
+        background-color: black;
+        *{
+          color: white !important;
+        }
+      }
+    }
+    .performance-page__title {
+      font-weight: 600;
+    }
+    .performance-page__content {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.5s ease-out;
+      &-inner {
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      &.hide {
+        grid-template-rows: 0fr;
+      }
+    }
+    .performance-page__desc {
+      width: 80%;
+      margin: 20px 0;
+    }
+    .performance-page__video {
+      margin-bottom: 40px;
+      position: relative;
+      width: 90%;
+      height: 0;
+      padding-bottom: 56.25% * 0.9;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+}
+}

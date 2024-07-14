@@ -23,36 +23,12 @@ function CameraControl() {
   }));
 
   useEffect(() => {
-    switch (currentPage) {
-      default:
-      case "home":
-        springApi.start({ position: [0, 5, 8] });
-        break;
-      case "about":
-        if (three.size.width > 900) {
-          springApi.start({ position: [-2, 1.2, 2] });
-        } else {
-          springApi.start({ position: [-1.9, 0, 1.5] });
-        }
-        break;
-      case "contact":
-        if (three.size.width > 900) {
-          springApi.start({ position: [3, -1, 3] });
-        } else {
-          springApi.start({ position: [2, 0, 1.8] });
-        }
-        break;
-      case "works":
-        springApi.start({ position: [0, 0, 8] });
-        break;
-      case "audio":
-        springApi.start({ position: [0, 0, 8] });
-        break;
-      case "websites":
-        springApi.start({ position: [0, 8, 0] });
-        break;
+    if (three.size.width > 960) {
+      springApi.start({ position: [0, -3, 4] });
+    } else {
+      springApi.start({ position: [0, 0, 7] });
     }
-  }, [currentPage]);
+  }, []);
 
   return "";
 }

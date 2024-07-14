@@ -1,14 +1,38 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default [
+  {
+    id: "202401",
+    year: "2024",
+    title: "Corner Whispers",
+    description: `"Corner Whispers" is an immersive interactive work inspired by micro-ecology.
+    In the gaps and corners of the city's tiles, tiny beings whisper at their feet, interacting
+    with city residents in subtle ways. Cities are built of cement walls, buildings and asphalt,
+    and we seem to be preventing plant growth in almost every possible place. <br/>
+
+    However the circumstances, those little creatures in the corner quietly pop out and thrive
+    before we notice. The creatures in these corners sprang out one by one from the gaps in the
+    tiles, the seams in the door frames, and the cracks in the asphalt, quietly following people's
+    footsteps. <br/>
+
+    Hsiao’s new media installation "Corner Whispers" on display, an immersive interaction device, is
+    a record of the artist's beginning to explore nature which was strange for her. It leads the
+    audience to realize that human beings are part of the overall ecology. <br/>`,
+    photos: ["202401-1.jpg", "202401-2.jpg", "202401-3.jpg", "202401-4.jpg", "202401-5.jpg"],
+    video: "https://player.vimeo.com/video/961039766",
+    tools: "TouchDesigner, 3D Scan",
+  },
   {
     id: "202001",
     year: "2020",
     title: "Coffee And Kitty",
-    description: `decentralized, pseudonymous, open and transparent, are known as features of
-	blockchain.<br />
-	In the centralized system, only the bank or government can see what you are
-	doing.<br />
-	But in the decentralized system, since blockchains are transparent, every
-	action in the ledger can be easily checked and viewed.<br />
+    description: `decentralized, pseudonymous, open and transparent, are known as features of 
+    blockchain.<br />
+	
+    In the centralized system, only the bank or government can see what you are 
+    doing.<br />
+    
+    But in the decentralized system, since blockchains are transparent, every 
+    action in the ledger can be easily checked and viewed.<br />
 	The most crucial elements are addresses. everything we do in the blockchain
 	is related to address, a 27-34 digit code consisting of letters and
 	numbers.<br /><br />

@@ -1,3 +1,5 @@
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
@@ -7,17 +9,35 @@ import store from "./store";
 
 import App from "./App";
 import WorksPage from "./pages/WorksPage/WorksPage";
-
-import "./index.css";
+import COrnerWhispers from "./pages/WorksPage/Works/CornerWhispers";
+import PerformancePage from "./pages/PerformancePage/PerformancePage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <App />,
+      },
+      {
+        path: "/works",
+        children: [
+          {
+            path: "",
+            element: <WorksPage />,
+          },
+          {
+            path: "corner-whispers",
+            element: <COrnerWhispers />,
+          },
+        ],
+      },
+    ],
   },
   {
-    path: "/works",
-    element: <WorksPage />,
+    path: "/performance",
+    element: <PerformancePage />,
   },
 ]);
 

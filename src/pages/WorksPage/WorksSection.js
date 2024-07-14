@@ -5,6 +5,7 @@ import { setPage } from "../../features/pages";
 import { Html, PresentationControls } from "@react-three/drei";
 import { useEffect, useState, useRef } from "react";
 import { useThree } from "@react-three/fiber";
+import { useNavigate } from "react-router-dom";
 
 import content from "../../content/works";
 
@@ -12,6 +13,7 @@ import WorkCard from "./WorkCard";
 import WorkDetail from "./WorkDetail";
 
 function WorksSection() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.pages.currentPage);
   const groupRef = useRef();
@@ -34,6 +36,7 @@ function WorksSection() {
 
   const onOpenDetail = (content) => {
     if (currentPage !== "works") return;
+    if (content.id === "202401") return navigate("/works/corner-whispers");
     setShowDetail(content);
   };
   const onCloseDetail = () => {

@@ -1,0 +1,390 @@
+.corner-whispers{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  text-align: justify;
+  background-color: #ddd7ce;
+
+  *{
+    transition: all 1s ease-in-out;
+  }
+
+  h1 {
+    font-family: "Playwrite AU NSW", cursive;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 4rem;
+  }
+
+  section {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .corner-whispers {
+
+    &__description {
+      z-index: 2;
+      margin: 20px 10% ;
+      font-weight: 500;
+      text-shadow: 
+        #ddd7ce 2px 2px 2px ,
+        #ddd7ce 2px -2px 2px,
+        #ddd7ce -2px -2px 2px,
+        #ddd7ce -2px 2px 2px,
+        #ddd7ce 1px 1px 1px,
+        #ddd7ce 1px -1px 1px,
+        #ddd7ce -1px -1px 1px,
+        #ddd7ce -1px 1px 1px,
+        #ddd7ce 1px 1px 2px,
+        #ddd7ce 1px -1px 2px,
+        #ddd7ce -1px -1px 2px,
+        #ddd7ce -1px 1px 2px;
+    }
+
+    &__title {
+      z-index: 2;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color:aliceblue;
+      margin: 10px;
+
+      h1{
+        text-align: center;
+        margin: 0;
+      }
+      p {
+        text-align: center;
+        font-family: "Playwrite AU NSW", cursive;
+      }
+    }
+
+    &__background-images{
+      width: 100%;
+      height: 700%;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @media only screen and (max-width: 1024px) {
+        height: 700%;
+      }
+      @media only screen and (max-width: 600px) {
+        height: 700%;
+      }
+
+      img:nth-child(1){
+        position: absolute;
+        top:-100px;
+        right: -200px;
+
+        transform: rotate(210deg);
+      }
+      img:nth-child(2) {
+        position: absolute;
+        top: 70vh;
+        left: -30px;
+        height: 40vh;
+
+        transform: rotate(30deg);
+
+        @media only screen and (max-width: 1024px) {
+          display: none;
+        }
+      }
+      img:nth-child(3) {
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        height: 80vh;
+      }
+    }
+
+    &__flowers {
+      flex-direction: row;
+      height: 100%;
+      flex-wrap: wrap;
+      margin-top: 10%;
+      position: relative;
+      text-shadow:
+          #ddd7ce 2px 2px 2px,
+          #ddd7ce 2px -2px 2px,
+          #ddd7ce -2px -2px 2px,
+          #ddd7ce -2px 2px 2px,
+          #ddd7ce 2px 2px 4px,
+          #ddd7ce 2px -2px 4px,
+          #ddd7ce -2px -2px 4px,
+          #ddd7ce -2px 2px 4px;
+      @media only screen and (max-width: 1024px) {
+        height: 100%;
+        margin-bottom: 0;
+      }
+
+      &-last {
+        position: absolute;
+        left: 0;
+        top: 25%;
+        width: 140px;
+        height: 50%;
+        padding: 40px;
+        padding-right: 100px;
+        z-index: 2;
+        opacity: 0.3;
+        cursor: pointer;
+
+        @media only screen and (max-width: 1024px) {
+          height: 25%;
+          width: 15%;
+        }
+
+        &:hover {
+          transform: scale(2);
+          opacity: 1;
+          animation: last-arrow 1s infinite;
+        }
+
+      }
+      &-next {
+        position: absolute;
+        right: 0;
+        top:25%;
+        width: 140px;
+        height: 50%;
+        padding: 40px;
+        padding-left: 100px;
+        z-index: 2;
+        opacity: 0.3;
+        cursor: pointer;
+
+        @media only screen and (max-width: 1024px) {
+          height: 25%;
+          width: 15%;
+        }
+
+        &:hover {
+            transform: scale(2);
+            opacity: 1;
+            animation: next-arrow 1s infinite;
+          }
+      }
+
+    }
+
+    &__canvas {
+      width: 80%;
+      height: 80%;
+      margin: 0 -15% 0 -20%; 
+
+
+      @media only screen and (max-width: 1024px) {
+        width: 120%;
+        margin-right: -10%;
+        margin-bottom: -20%;
+      }
+      
+    }
+
+    &__flower-detail {
+      width: 40%;
+      margin-top: 15%;
+      z-index:3;
+      pointer-events: none;
+
+      @media only screen and (max-width: 1024px) {
+        margin-top: 0;
+        width: 80%;
+        margin-bottom: 60%;
+      }
+    }
+
+    &__exhibitions {
+
+
+      @media only screen and (max-width: 1024px) {
+        height: fit-content;
+        margin-top: 50%;
+        h1 {
+          font-size: 48px;
+        }
+      }
+      &-image-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        @media only screen and (max-width: 1024px) {
+          justify-content: center;
+          align-content: center;
+        }
+      }
+
+      img {
+        width: 30%;
+        @media only screen and (max-width: 1024px) {
+          width: 80%;
+          margin: 5%;
+        }
+      }
+
+      &-video-wrapper {
+        padding: 56.25% 0 0 0;
+        position: relative;
+        width: 90%;
+        height: fit-content;
+        margin: 10px 0;
+        @media only screen and (max-width: 1024px) {
+          width: 100%;
+          margin: 5% 0;
+        }
+      }
+    }
+
+    &__second-version {
+
+      &-image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &-title {
+        margin: 50px;
+      }
+
+      &-photo {
+        width: 100%;
+        margin: 10%;
+        z-index: 2;
+      }
+      &-video {
+        height: 50vh;
+        width: fit-content;
+        z-index: 2;
+      }
+
+      @media only screen and (max-width: 1024px) {
+        &-photo {
+          width: 90%;
+          height: fit-content;
+          margin-bottom: 5%;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+      
+        &-video {
+          width: 90%;
+          height: fit-content;
+          margin-bottom: 10%;
+        }
+      }
+    }
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      text-shadow:
+          #ddd7ce 2px 2px 2px,
+          #ddd7ce 2px -2px 2px,
+          #ddd7ce -2px -2px 2px,
+          #ddd7ce -2px 2px 2px,
+          #ddd7ce 2px 2px 4px,
+          #ddd7ce 2px -2px 4px,
+          #ddd7ce -2px -2px 4px,
+          #ddd7ce -2px 2px 4px;
+
+      h1 {
+          text-align: center;
+          @media only screen and (max-width: 1024px) {
+            font-size: 48px;
+          }
+      }
+
+      p {
+        margin: 10%;
+      }
+    }
+
+    &-photo {
+      width: 200px;
+    }
+
+    &-website {
+      font-size: 24px;
+      color: black;
+    }
+    
+  }
+}
+
+@keyframes last-arrow {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes next-arrow {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.loading-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+._loading_overlay_content {
+  font-size: 48px;
+  font-family: "Playwrite AU NSW", cursive;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

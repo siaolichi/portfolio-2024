@@ -1,8 +1,8 @@
-// import AwesomeSlider from "react-awesome-slider";
+import AwesomeSlider from "react-awesome-slider";
 import "./WorkDetail.scss";
-// import { Fragment } from "react";
+import { Fragment } from "react";
 
-// import "react-awesome-slider/dist/styles.css";
+import "react-awesome-slider/dist/styles.css";
 
 function WorkDetail({ work }) {
   return (
@@ -21,7 +21,7 @@ function WorkDetail({ work }) {
           ></iframe>
         </div>
       )}
-      {/* {work.photos.length > 1 && (
+      {work.photos.length > 1 && (
         <AwesomeSlider style={{ marginBottom: "80px" }} animation='foldOutAnimation' allowFullScreen>
           {work.photos.map((photo, index) => (
             <Fragment key={index}>
@@ -33,7 +33,7 @@ function WorkDetail({ work }) {
             </Fragment>
           ))}
         </AwesomeSlider>
-      )} */}
+      )}
 
       <div className='description' dangerouslySetInnerHTML={{ __html: work.description }} />
     </div>

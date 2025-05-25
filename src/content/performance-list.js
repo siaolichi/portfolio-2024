@@ -1,12 +1,12 @@
 const list = [
   {
     year: "2024",
-    title: "(Demo) Resonance of the Virtual __ Coming soon at 11/29, 11/30",
+    title: "Resonance of the Virtual",
     description: `The installation is based on a regular dodecahedron, creating a miniature cosmos where I become the center of this resonance. Wires connect various parts of my body to the dodecahedron. Through the arrangement and combination of these wires on the dodecahedron, I project diverse images of the virtual world within it. The multifaceted container simultaneously symbolizes my virtual identities in the online world.<br/>
 The work delves into the integration of virtual and real, particularly showcasing the diversity of virtual identities through the variations in wire arrangements. This symbolizes the intricate interaction between virtual reality and real life, and the impact of technology on the shaping of individual identities.<br/>
 The arrangement of wires not only changes the projection of the virtual world but also deeply reflects the complexity of constructing virtual identities online. The constant transformation of these wires represents the dynamic changes of our virtual presence in the digital space.<br/>
 Although the projections in the virtual world are digital, our increasing reliance on the internet and technology makes this virtuality tend towards reality. However, this does not replace the existence of reality but rather coexists as a parallel world, where we simultaneously exhibit multiple facets.`,
-    video: "rLl4D8ymGT4",
+    video: "MDLakz4Kqx0",
   },
   {
     year: "2024",

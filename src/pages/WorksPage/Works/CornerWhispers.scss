@@ -226,12 +226,16 @@
         }
       }
       &-image-wrapper {
+        width: 80%;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         @media only screen and (max-width: 1024px) {
           justify-content: center;
           align-content: center;
+        }
+        .awssld__content {
+          background: #ddd7ce;     
         }
       }
 

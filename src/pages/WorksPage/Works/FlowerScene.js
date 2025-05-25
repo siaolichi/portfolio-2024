@@ -33,7 +33,6 @@ function FlowerScene({ list, flower }) {
   list[12].model = useGLTF(`../../assets/models/${list[12].title}.glb`);
 
   const { actions } = useAnimations(flower.model.animations, flower.model.scene);
-  console.log(actions);
 
   useEffect(() => {
     actions?.[`Idle_${flower.title}`].play();

@@ -1,4 +1,5 @@
-import { GizmoHelper, GizmoViewport, useAnimations, useGLTF } from "@react-three/drei";
+import { useAnimations, useGLTF } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { a, useSpringRef, useSprings } from "@react-spring/three";
@@ -8,17 +9,16 @@ import { setPage } from "../../features/pages";
 
 useGLTF.preload("./assets/models/flowers.glb");
 useGLTF.preload("./assets/models/about.glb");
-useGLTF.preload("./assets/models/contact.glb");
-useGLTF.preload("./assets/models/av.glb");
-useGLTF.preload("./assets/models/project.glb");
+useGLTF.preload("./assets/models/performance.glb");
+useGLTF.preload("./assets/models/works.glb");
+useGLTF.preload("./assets/models/namw.glb");
 
 function Plants() {
   const flowers = useGLTF("./assets/models/flowers.glb");
   const about = useGLTF("./assets/models/about.glb");
-  const cv = useGLTF("./assets/models/cv.glb");
   const performance = useGLTF("./assets/models/performance.glb");
   const works = useGLTF("./assets/models/works.glb");
-  console.log(about);
+  const name = useGLTF("./assets/models/name.glb");
 
   const buildingsRef = [];
 
@@ -30,6 +30,7 @@ function Plants() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { size } = useThree();
 
   const { actions } = useAnimations(flowers.animations, flowers.scene);
 
@@ -65,11 +66,13 @@ function Plants() {
     e.stopPropagation();
     buildingsRef[num].start({
       to: {
-        scale: [1.2, 1.2, 1.2],
+        scale: [1.1, 1.1, 1.1],
         position: [0, 0, 0],
       },
       config: { mass: 0.1, tension: 180, friction: 10 },
     });
+
+    document.body.style.cursor = "pointer";
   };
 
   const pointerLeaveEvent = (e, num) => {
@@ -82,12 +85,26 @@ function Plants() {
       },
       config: { mass: 0.1, tension: 180, friction: 10 },
     });
+
+    document.body.style.cursor = "default";
   };
 
   return (
     <>
-      <group position={[0, -3, 0]} scale={1.2} rotation-y={Math.PI / 2}>
+      <primitive
+        object={name.scene}
+        position={size.width > 960 ? [0, 1.5, 0] : [0, 3, 0]}
+        scale={size.width > 960 ? 1 : 1.2}
+        rotation-x={size.width > 960 ? Math.PI / 6 : Math.PI / 8}
+      />
+      <group
+        position={size.width > 960 ? [0.1, -3, 0] : [0, -5, 0]}
+        scale={size.width > 960 ? 1.2 : 1.5}
+        rotation-y={Math.PI / 2}
+        rotation-x={-Math.PI / 8}
+      >
         <primitive object={flowers.scene} />
+
         <ambientLight intensity={1} />
         {/* <GizmoHelper
           alignment='bottom-right'
@@ -103,15 +120,6 @@ function Plants() {
           scale={springs[0].scale}
           position={springs[0].position}
           name='about'
-        />
-        <a.primitive
-          onPointerOver={(e) => pointerOverEvent(e, 1)}
-          onPointerLeave={(e) => pointerLeaveEvent(e, 1)}
-          onClick={(e) => onClickPage(e, "cv")}
-          object={cv.scene}
-          scale={springs[1].scale}
-          position={springs[1].position}
-          name='cv'
         />
         <a.primitive
           onPointerOver={(e) => pointerOverEvent(e, 2)}

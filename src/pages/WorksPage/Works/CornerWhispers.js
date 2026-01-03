@@ -5,12 +5,6 @@ import flower001 from "../../../assets/imgs/pages/corner-whispers/001.png";
 import flower003 from "../../../assets/imgs/pages/corner-whispers/003.png";
 import flower008 from "../../../assets/imgs/pages/corner-whispers/008.png";
 import titleFLower from "../../../assets/imgs/pages/corner-whispers/012.png";
-
-import exhibitionPhoto1 from "../../../assets/imgs/pages/corner-whispers/exhibition-1.jpg";
-import exhibitionPhoto2 from "../../../assets/imgs/pages/corner-whispers/exhibition-2.jpg";
-import exhibitionPhoto3 from "../../../assets/imgs/pages/corner-whispers/exhibition-3.jpg";
-import exhibitionPhoto4 from "../../../assets/imgs/pages/corner-whispers/exhibition-5.png";
-import exhibitionPhoto5 from "../../../assets/imgs/pages/corner-whispers/exhibition-4.png";
 import portrait from "../../../assets/imgs/portrait.jpeg";
 
 import LoadingOverlay from "react-loading-overlay";
@@ -23,13 +17,15 @@ import BackIcon from "../../../assets/icons/corner-whisper-backward.svg";
 import nextIcon from "../../../assets/icons/corner-whisper-forward.svg";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
+import AwesomeSlider from "react-awesome-slider";
+import { Fragment } from "react";
 
 function CornerWhispers() {
   const content = works.filter((value) => value.id === "202401")[0];
   const [CurrentFlower, setCurrentFLower] = useState(10);
 
   const { active, loaded } = useProgress();
-  console.log(loaded);
+  const photos = ["202401-1.jpg", "202401-2.jpg", "202401-3.jpg", "202401-4.jpg", "202401-5.jpg", "202401-6.jpg"];
 
   return (
     <div className='corner-whispers'>
@@ -98,16 +94,17 @@ function CornerWhispers() {
           </div>
           <script src='https://player.vimeo.com/api/player.js'></script>
           <div className='corner-whispers__exhibitions-image-wrapper'>
-            <img src={exhibitionPhoto1} alt='exhibition' />
-            <img src={exhibitionPhoto2} alt='exhibition' />
-            <img src={exhibitionPhoto3} alt='exhibition' />
-          </div>
-        </section>
-        <section className='corner-whispers__second-version'>
-          <div className='corner-whispers__second-version-image-wrapper'>
-            <img className='corner-whispers__second-version-photo' src={exhibitionPhoto4} alt='exhibition' />
-            <h1>And coming soon!</h1>
-            <img className='corner-whispers__second-version-photo' src={exhibitionPhoto5} alt='exhibition' />
+            <AwesomeSlider style={{ marginBottom: "80px" }} animation='foldOutAnimation' allowFullScreen>
+              {photos.map((photo, index) => (
+                <Fragment key={index}>
+                  <img
+                    src={`/assets/images/202401/${photo}`}
+                    alt='corner whisper'
+                    style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                  />
+                </Fragment>
+              ))}
+            </AwesomeSlider>
           </div>
         </section>
         <section className='corner-whispers__about'>

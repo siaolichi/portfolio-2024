@@ -57,7 +57,6 @@ function AVPage() {
   };
   const onPause = (e) => {
     audioRef.current.pause();
-    console.log(audioRef.current.paused);
     setIsPlaying(false);
   };
   const onNext = (e) => {

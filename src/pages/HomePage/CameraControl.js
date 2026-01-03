@@ -24,7 +24,7 @@ function CameraControl() {
 
   useEffect(() => {
     if (three.size.width > 960) {
-      springApi.start({ position: [0, -3, 4] });
+      springApi.start({ position: [0, -1, 2.5] });
     } else {
       springApi.start({ position: [0, 0, 7] });
     }
